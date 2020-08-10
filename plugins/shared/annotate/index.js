@@ -115,7 +115,7 @@ module.exports = (namespace) => {
         // object will contain a "show()" method when the info panel is
         // rendered, allowing us to externally open the entry in the info
         // panel corresponding to this error.
-        errorLabel($el, text, expanded, errorEntry) {
+        errorLabel($el, text, expanded, errorEntry, level = "error") {
             let $innerHtml = $(errorLabelTemplate({
                 text: text,
                 detail: expanded,
@@ -137,7 +137,7 @@ module.exports = (namespace) => {
             }
 
             return this.label($el)
-                .addClass("tota11y-label-error")
+                .addClass(`tota11y-label-${level}`)
                 .html($innerHtml);
         },
 

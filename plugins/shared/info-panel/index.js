@@ -53,8 +53,8 @@ class InfoPanel {
      * Adds an error to the errors tab. Also receives a jQuery element to
      * highlight on hover.
      */
-    addError(title, $description, $el) {
-        let error = {title, $description, $el};
+    addError(title, $description, $el, level = "error") {
+        let error = {title, $description, $el, level};
         this.errors.push(error);
         return error;
     }

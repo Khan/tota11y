@@ -19,6 +19,10 @@
             font-size: 24px;
             font-weight: bold;
         }
+
+        .hidden {
+            display: none;
+        }
     </style>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -32,6 +36,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <h6 class="hidden">This heading should be hidden.</h3>
                 <h4 class="navbar-brand">Project name</h4>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
@@ -52,6 +57,7 @@
     <div class="jumbotron">
         <div class="container">
             <h1>Hello, world!</h1>
+            <h2 aria-hidden="true">This heading should be hidden from screen readers.</h2>
             <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
             <p>
                 <a href="#">Click here</a> to see why. Or <a href="#">check out more demo pages</a> on my blog.

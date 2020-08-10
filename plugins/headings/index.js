@@ -12,7 +12,7 @@ require("./style.less");
 const ERRORS = {
     FIRST_NOT_H1(level) {
         return {
-            title: "First heading is not an &lt;h1&gt;",
+            title: "Error: First heading is not an &lt;h1&gt;",
             description: `
                 <div>
                     To give your document a proper structure for assistive
@@ -36,7 +36,7 @@ const ERRORS = {
     // [1]: http://www.w3.org/html/wg/drafts/html/master/semantics.html#outline
     // [2]: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Sections_and_Outlines_of_an_HTML5_document#The_HTML5_Outline_Algorithm
     MULTIPLE_H1: {
-        title: "&lt;h1&gt; used when one is already present"
+        title: "Error: &lt;h1&gt; used when one is already present"
     },
 
     // This error accepts two arguments to display a relevant error message
@@ -60,10 +60,34 @@ const ERRORS = {
 
         return {
             title: `
-                Nonconsecutive heading level used (h${prevLevel} &rarr;
+                Error: Nonconsecutive heading level used (h${prevLevel} &rarr;
                 h${currLevel})
             `,
             description: description
+        };
+    },
+
+    HIDDEN_HEADER(level) {
+        return {
+            title: `Warning: Hidden heading level (h${level})`,
+            description: `
+                <div>
+                    This document contains a hidden h${level}
+                </div>
+            `,
+            errorLevel: "warning",
+        };
+    },
+
+    ARIA_HIDDEN_HEADER(level) {
+        return {
+            title: `Warning: ARIA Hidden heading level (h${level})`,
+            description: `
+                <div>
+                    This document contains an h${level} with aria-hidden set to true.
+                </div>
+            `,
+            errorLevel: "warning"
         };
     }
 };
@@ -102,6 +126,14 @@ class HeadingsPlugin extends Plugin {
                 error = ERRORS.NONCONSECUTIVE_HEADER(prevLevel, level);     // eslint-disable-line new-cap
             }
 
+            if ($el.attr("aria-hidden")) {
+                error = ERRORS.ARIA_HIDDEN_HEADER(level);
+            }
+
+            if ($el.is(":hidden")) {
+                error = ERRORS.HIDDEN_HEADER(level);
+            }
+
             prevLevel = level;
 
             // Render the entry in the outline for the "Summary" tab
@@ -116,23 +148,26 @@ class HeadingsPlugin extends Plugin {
             annotate.toggleHighlight($el, $item);
 
             if (error) {
+                const { errorLevel = "error" } = error;
+
                 // Register an error to the info panel
                 let infoPanelError = this.error(
-                    error.title, $(error.description), $el);
+                    error.title, $(error.description), $el, errorLevel);
 
                 // Place an error label on the heading tag
                 annotate.errorLabel(
                     $el,
                     $el.prop("tagName").toLowerCase(),
                     error.title,
-                    infoPanelError);
+                    infoPanelError,
+                    errorLevel);
 
                 // Mark the summary item as red
                 // Pretty hacky, since we're borrowing label styles for this
                 // summary tab
                 $item
                     .find(".tota11y-heading-outline-level")
-                    .addClass("tota11y-label-error");
+                    .addClass(`tota11y-label-${errorLevel}`);
             } else {
                 // Label the heading tag
                 annotate.label($el).addClass("tota11y-label-success");

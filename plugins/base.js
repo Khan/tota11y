@@ -14,8 +14,8 @@ let InfoPanel = require("./shared/info-panel");
 require("./style.less");
 
 class Plugin {
-    constructor() {
-        this.panel = new InfoPanel(this);
+    constructor(options = {}) {
+        this.panel = new InfoPanel(this, options.panel);
         this.$checkbox = null;
     }
 

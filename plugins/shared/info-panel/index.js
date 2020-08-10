@@ -23,10 +23,12 @@ require("./style.less");
 const INITIAL_PANEL_MARGIN_PX = 10;
 const COLLAPSED_CLASS_NAME = "tota11y-collapsed";
 const HIDDEN_CLASS_NAME = "tota11y-info-hidden";
+const STATUS_PANEL_VIEW_CLASS_NAME = "tota11y-info-status-panel-view";
 
 class InfoPanel {
-    constructor(plugin) {
+    constructor(plugin, options = {}) {
         this.plugin = plugin;
+        this.options = options;
 
         this.about = null;
         this.summary = null;
@@ -179,6 +181,23 @@ class InfoPanel {
         });
     }
 
+    renderAnnotationCheckbox() {
+        if (!this.options.disableAnnotation) {
+            return (
+                <label className="tota11y-info-annotation-toggle">
+                    Annotate:
+                    {" "}
+                    <input
+                        className="toggle-annotation"
+                        type="checkbox"
+                        checked="checked" />
+                </label>
+            );
+        }
+
+        return null;
+    }
+
     render() {
         // Destroy the existing info panel to prevent double-renders
         if (this.$el) {
@@ -187,19 +206,18 @@ class InfoPanel {
 
         let hasContent = false;
 
+        const classNames = ["tota11y", "tota11y-info"];
+
+        if (this.options.statusPanelView) {
+            classNames.push(STATUS_PANEL_VIEW_CLASS_NAME);
+        }
+
         this.$el = (
-            <div className="tota11y tota11y-info" tabindex="-1">
+            <div className={classNames.join(" ")} tabindex="-1">
                 <header className="tota11y-info-title">
                     {this.plugin.getTitle()}
                     <span className="tota11y-info-controls">
-                        <label className="tota11y-info-annotation-toggle">
-                            Annotate:
-                            {" "}
-                            <input
-                                className="toggle-annotation"
-                                type="checkbox"
-                                checked="checked" />
-                        </label>
+                        {this.renderAnnotationCheckbox()}
                         <a aria-label="Close info panel"
                            href="#"
                            className="tota11y-info-dismiss-trigger">

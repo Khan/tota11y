@@ -3,6 +3,8 @@
 @panelBodyWidth: 400px;
 @panelBodyHeight: 270px;
 
+@statusPanelHeight: 35px;
+
 @tabHoverColor: #555;
 @tabActiveColor: @white;
 
@@ -86,12 +88,20 @@
         &.active &-anchor-text {
             color: @darkGray;
         }
+
+        .tota11y-info-status-panel-view & {
+            display: none;
+        }
     }
 
     &-sections {
         position: relative;
         height: @panelBodyHeight;
         width: @panelBodyWidth;
+
+        .tota11y-info-status-panel-view & {
+            height: @statusPanelHeight;
+        }
     }
 
     &-section {
@@ -108,6 +118,10 @@
 
         &.active {
             display: block;
+        }
+
+        .tota11y-info-status-panel-view & {
+            overflow: hidden;
         }
     }
 

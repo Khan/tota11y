@@ -20,6 +20,9 @@ require("./style.less");
 // and across.
 const MIN_HIGHLIGHT_SIZE = 25;
 
+// typecast to jQuery collection in case our plugin is jquery-less
+const ensureJqueryCollection = (el) => (el instanceof $) ? el : $(el);
+
 // Polyfill fallback for IE < 10
 window.requestAnimationFrame = window.requestAnimationFrame ||
     function(callback) {
@@ -102,7 +105,9 @@ module.exports = (namespace) => {
     return {
         // Places a small label in the top left corner of a given jQuery
         // element. By default, this label contains the element's tagName.
-        label($el, text=$el.prop("tagName").toLowerCase()) {
+        label(el, text=$el.prop("tagName").toLowerCase()) {
+            const $el = ensureJqueryCollection(el);
+
             let $label = createAnnotation($el, "tota11y-label");
             return $label.html(text);
         },
@@ -115,7 +120,9 @@ module.exports = (namespace) => {
         // object will contain a "show()" method when the info panel is
         // rendered, allowing us to externally open the entry in the info
         // panel corresponding to this error.
-        errorLabel($el, text, expanded, errorEntry) {
+        errorLabel(el, text, expanded, errorEntry) {
+            const $el = ensureJqueryCollection(el);
+
             let $innerHtml = $(errorLabelTemplate({
                 text: text,
                 detail: expanded,
@@ -143,7 +150,9 @@ module.exports = (namespace) => {
 
         // Highlights a given jQuery element by placing a translucent
         // rectangle directly over it
-        highlight($el) {
+        highlight(el) {
+            const $el = ensureJqueryCollection(el);
+
             let $highlight = createAnnotation($el, "tota11y-highlight");
             return $highlight.css({
                 // include margins
@@ -154,7 +163,9 @@ module.exports = (namespace) => {
 
         // Toggles a highlight on a given jQuery element `$el` when `$trigger`
         // is hovered (mouseenter/mouseleave) or focused (focus/blur)
-        toggleHighlight($el, $trigger) {
+        toggleHighlight(el, $trigger) {
+            const $el = ensureJqueryCollection(el);
+
             let $highlight;
 
             $trigger.on("mouseenter focus", () => {

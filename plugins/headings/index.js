@@ -9,6 +9,32 @@ let annotate = require("../shared/annotate")("headings");
 let outlineItemTemplate = require("./outline-item.handlebars");
 require("./style.less");
 
+class HeadingLevel {
+    /*
+     * Constructs a heading level from a heading element (h1 - h6) or
+     * any element with a heading role and an aria level (potentially >6).
+     */
+    constructor($el) {
+        let tagName = $el.prop("tagName").toLowerCase();
+        if ($el.attr("role") === "heading"
+                && typeof $el.attr("aria-level") !== "undefined") {
+            this._level = +$el.attr("aria-level");
+            this._tag = `&lt;${tagName} role="heading" aria-level="${this._level}"&gt;`
+        } else  {
+            this._level = +tagName.slice(1);
+            this._tag = `&lt;${tagName}&gt;`
+        }
+    }
+
+    tag() {
+        return this._tag;
+    }
+
+    value() {
+        return this._level;
+    }
+}
+
 const ERRORS = {
     FIRST_NOT_H1(level) {
         return {
@@ -18,7 +44,7 @@ const ERRORS = {
                     To give your document a proper structure for assistive
                     technologies, it is important to lay out your headings
                     beginning with an <code>&lt;h1&gt;</code>. We found an
-                    <code>&lt;h${level}&gt;</code> instead.
+                    <code>${level.tag()}</code> instead.
                 </div>
             `
         };
@@ -41,27 +67,36 @@ const ERRORS = {
 
     // This error accepts two arguments to display a relevant error message
     NONCONSECUTIVE_HEADER(prevLevel, currLevel) {
-        let _tag = (level) => `<code>&lt;h${level}&gt;</code>`;
+        let levelToTagCode = (level) => {
+            if (level <= 6) {
+                return `<code>&lt;h${level}&gt;</code>`;
+            }
+            return `<code>&lt;div role="heading" aria-level="${level}"&gt;>`;
+        }
+        let _tag = (level) => `<code>${level.tag()}</code>`;
+
         let description = `
             <div>
                 This document contains an ${_tag(currLevel)} tag directly
                 following an ${_tag(prevLevel)}. In order to maintain a consistent
                 outline of the page for assistive technologies, reduce the gap in
                 the heading level by upgrading this tag to an
-                ${_tag(prevLevel+1)}`;
+                ${levelToTagCode(prevLevel.value()+1)}`;
 
         // Suggest upgrading the tag to the same level as `prevLevel` iff
         // `prevLevel` is not 1
-        if (prevLevel !== 1) {
-            description += ` or ${_tag(prevLevel)}`;
+        if (prevLevel.value() !== 1) {
+            description += ` or ${levelToTagCode(prevLevel.value())}`;
         }
 
         description += ".</div>";
 
         return {
+            // just convert to hX for title as space is constrained even
+            // if actual tag is not h1-h6
             title: `
-                Nonconsecutive heading level used (h${prevLevel} &rarr;
-                h${currLevel})
+                Nonconsecutive heading level used (h${prevLevel.value()} &rarr;
+                h${currLevel.value()})
             `,
             description: description
         };
@@ -89,16 +124,17 @@ class HeadingsPlugin extends Plugin {
         let prevLevel;
         $headings.each((i, el) => {
             let $el = $(el);
-            let level = +$el.prop("tagName").slice(1);
+            let level = new HeadingLevel($el);
             let error;
 
             // Check for any violations
             // NOTE: These violations do not overlap, but as we add more, we
             // may want to separate the conditionals here to report multiple
             // errors on the same tag.
-            if (i === 0 && level !== 1) {
+            if (i === 0 && level.value() !== 1) {
                 error = ERRORS.FIRST_NOT_H1(level);                         // eslint-disable-line new-cap
-            } else if (prevLevel && level - prevLevel > 1) {
+            } else if (prevLevel.value()
+                    && level.value() - prevLevel.value() > 1) {
                 error = ERRORS.NONCONSECUTIVE_HEADER(prevLevel, level);     // eslint-disable-line new-cap
             }
 
@@ -106,7 +142,11 @@ class HeadingsPlugin extends Plugin {
 
             // Render the entry in the outline for the "Summary" tab
             let $item = $(outlineItemTemplate({
-                level: level,
+                // provide a numerical level which can go arbitarily high
+                // and a capped level which we use for styling the element
+                // that stops after 6.
+                level: level.value(),
+                _level: level.value() <= 6 ? level.value() : "higher",
                 text: $el.text()
             }));
 
@@ -123,7 +163,9 @@ class HeadingsPlugin extends Plugin {
                 // Place an error label on the heading tag
                 annotate.errorLabel(
                     $el,
-                    $el.prop("tagName").toLowerCase(),
+                    // just convert to hX for title as space is constrained even
+                    // if actual tag is not h1-h6
+                    `h${level.value()}`,
                     error.title,
                     infoPanelError);
 
@@ -135,7 +177,8 @@ class HeadingsPlugin extends Plugin {
                     .addClass("tota11y-label-error");
             } else {
                 // Label the heading tag
-                annotate.label($el).addClass("tota11y-label-success");
+                annotate.label($el, `h${level.value()}`)
+                    .addClass("tota11y-label-success");
 
                 // Mark the summary item as green
                 $item
@@ -148,7 +191,9 @@ class HeadingsPlugin extends Plugin {
     }
 
     run() {
-        let $headings = $("h1, h2, h3, h4, h5, h6");
+        let $headings = $(
+            "h1, h2, h3, h4, h5, h6, [role=\"heading\"][aria-level]"
+        );
         // `this.outline` has the side-effect of also reporting violations
         let $items = this.outline($headings);
 

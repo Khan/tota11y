@@ -57,7 +57,7 @@ class Toolbar {
             $experimentalPlugins = (
                 <li>
                     <div className="tota11y-plugins-separator">
-                        Experimental
+                        Developers:
                     </div>
                     <ul>
                       {

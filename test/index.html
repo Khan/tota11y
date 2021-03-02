@@ -1,182 +1,239 @@
 <!doctype html>
 <html>
+
 <head>
-    <title>tota11y testbed</title>
-    <style>
-        body {
-            font-family: Arial;
-        }
+	<title>tota11y testbed</title>
+	<style>
+		body {
+			font-family: Arial;
+		}
 
-        .gradient {
-            background-image: linear-gradient(to bottom, #2937FF 0%, #6EFFCF 100%);
-            padding: 40px;
-            text-align: center;
-            width: 400px;
-        }
+		.gradient {
+			background-image: linear-gradient(to bottom, #2937FF 0%, #6EFFCF 100%);
+			padding: 40px;
+			text-align: center;
+			width: 400px;
+		}
 
-        .gradient .text {
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
-    </style>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+		.gradient .text {
+			color: white;
+			font-size: 24px;
+			font-weight: bold;
+		}
+
+		.visually-hidden {
+			clip: rect(0 0 0 0);
+			clip-path: inset(50%);
+			height: 1px;
+			overflow: hidden;
+			position: absolute;
+			white-space: nowrap;
+			width: 1px;
+			color: white;
+		}
+	</style>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <h4 class="navbar-brand">Project name</h4>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <form class="navbar-form navbar-right">
-                    <div class="form-group">
-                        <input id="email" type="text" placeholder="Email" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" placeholder="Password" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-success">Sign in</button>
-                </form>
-            </div><!--/.navbar-collapse -->
-        </div>
-    </nav>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+					aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<h4 class="navbar-brand">Project name</h4>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<form class="navbar-form navbar-right">
+					<div class="form-group">
+						<input id="email" type="text" placeholder="Email" class="form-control" aria-label="Email label">
+					</div>
+					<div class="form-group">
+						<input type="password" placeholder="Password" class="form-control" aria-labelledby="btn">
+					</div>
+					<button id=btn type="submit" class="btn btn-success">Sign in</button>
+				</form>
+			</div>
+			<!--/.navbar-collapse -->
+		</div>
+	</nav>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-        <div class="container">
-            <h1>Hello, world!</h1>
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-            <p>
-                <a href="#">Click here</a> to see why. Or <a href="#">check out more demo pages</a> on my blog.
-            </p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Hello, world!</h1>
+			<p>This is a template for a simple marketing or informational website. It includes a large callout called a
+				jumbotron and three supporting pieces of content. Use it as a starting point to create something more
+				unique.</p>
+			<p>
+				<a href="#">Click here</a> to see why. Or <a href="#">check out more demo pages</a> on my blog.
+			</p>
+			<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
 
-            <p><a class="btn btn-primary btn-lg btn-success" href="#" role="button">Continue</a></p>
+			<p><a class="btn btn-primary btn-lg btn-success" href="#" role="button">Continue</a></p>
 
-            <p>
-                <img width="40px" height="40px" src="http://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=256" alt="jordan">
-                <img width="40px" height="40px" src="http://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=256" alt="">
-                <img width="40px" height="40px" src="http://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=256" role="presentation">
-                <img width="40px" height="40px" src="http://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=256">
-            </p>
+			<p>
+				<img width="40px" height="40px"
+					src="http://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=256" alt="jordan">
+				<img width="40px" height="40px"
+					src="http://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=256" alt="">
+				<img width="40px" height="40px"
+					src="http://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=256" role="presentation">
+				<img width="40px" height="40px"
+					src="http://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=256">
+			</p>
 
-            <p>
-                <a href="http://khan.github.io/tota11y">
-                    <img src="https://camo.githubusercontent.com/cbd869e1eaca0ce98cb7e8d7eb28a6d845a18362/687474703a2f2f6b68616e2e6769746875622e696f2f746f74613131792f696d672f746f74613131792d6c6f676f2e706e67" alt="About this page" width="50">
-                </a>
-                <a href="http://khan.github.io/tota11y">
-                    <img src="https://camo.githubusercontent.com/cbd869e1eaca0ce98cb7e8d7eb28a6d845a18362/687474703a2f2f6b68616e2e6769746875622e696f2f746f74613131792f696d672f746f74613131792d6c6f676f2e706e67" alt="Check out tota11y" width="50">
-                </a>
-            </p>
+			<p>
+				<a href="http://khan.github.io/tota11y">
+					<img src="https://camo.githubusercontent.com/cbd869e1eaca0ce98cb7e8d7eb28a6d845a18362/687474703a2f2f6b68616e2e6769746875622e696f2f746f74613131792f696d672f746f74613131792d6c6f676f2e706e67"
+						alt="About this page" width="50">
+				</a>
+				<a href="http://khan.github.io/tota11y">
+					<img src="https://camo.githubusercontent.com/cbd869e1eaca0ce98cb7e8d7eb28a6d845a18362/687474703a2f2f6b68616e2e6769746875622e696f2f746f74613131792f696d672f746f74613131792d6c6f676f2e706e67"
+						alt="Check out tota11y" width="50">
+				</a>
+			</p>
 
-            <div class="gradient">
-                <div class="text">
-                    This text has a gradient
-                </div>
-            </div>
+			<div class="gradient">
+				<div class="text">
+					This text has a gradient
+				</div>
+			</div>
 
-            <div class="social">
-                <ul class="social-buttons">
-                    <li>
-                        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=Khan&amp;repo=tota11y&amp;type=watch&amp;count=true" width="95" height="20" title="Star on GitHub"></iframe>
-                    </li>
-                    <li>
-                        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=Khan&amp;repo=tota11y&amp;type=fork&amp;count=true" width="86" height="20" title="Fork on GitHub"></iframe>
-                    </li>
-                    <li class="follow-btn">
-                        <iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/follow_button.53db0107b4b6a3bad3794c3440f5809f.en.html#_=1433768369078&amp;dnt=false&amp;id=twitter-widget-1&amp;lang=en&amp;screen_name=tota11y&amp;show_count=true&amp;show_screen_name=true&amp;size=m" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="position: static; visibility: visible; width: 190px; height: 20px;"></iframe>
-                    </li>
-                    <li class="tweet-btn">
-                        <!--<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.54460a335ba528591a034cfb509bdf51.en.html#_=1433768369073&amp;count=horizontal&amp;dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fgetbootstrap.com%2F&amp;related=mdo%3ACreator%20of%20Bootstrap&amp;size=m&amp;text=Bootstrap%20%C2%B7%20The%20world%27s%20most%20popular%20mobile-first%20and%20responsive%20front-end%20framework.&amp;url=http%3A%2F%2Fgetbootstrap.com%2F&amp;via=getbootstrap" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="position: static; visibility: visible; width: 97px; height: 20px;"></iframe>
+			<p><input type="submit" value="value"></p>
+
+			<p><a title="stupid title ooh SEO" href="test2.html">Test2 wiggle</a></p>
+
+			<div class="social">
+				<ul class="social-buttons">
+					<li>
+						<iframe class="github-btn"
+							src="http://ghbtns.com/github-btn.html?user=Khan&amp;repo=tota11y&amp;type=watch&amp;count=true"
+							width="95" height="20"></iframe>
+					</li>
+					<li>
+						<iframe class="github-btn"
+							src="http://ghbtns.com/github-btn.html?user=Khan&amp;repo=tota11y&amp;type=fork&amp;count=true"
+							width="86" height="20" title="Fork on GitHub"></iframe>
+					</li>
+					<li class="follow-btn">
+						<iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true"
+							src="http://platform.twitter.com/widgets/follow_button.53db0107b4b6a3bad3794c3440f5809f.en.html#_=1433768369078&amp;dnt=false&amp;id=twitter-widget-1&amp;lang=en&amp;screen_name=tota11y&amp;show_count=true&amp;show_screen_name=true&amp;size=m"
+							class="twitter-follow-button twitter-follow-button" data-twttr-rendered="true"
+							style="position: static; visibility: visible; width: 190px; height: 20px;"></iframe>
+					</li>
+					<li class="tweet-btn">
+						<!--<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.54460a335ba528591a034cfb509bdf51.en.html#_=1433768369073&amp;count=horizontal&amp;dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fgetbootstrap.com%2F&amp;related=mdo%3ACreator%20of%20Bootstrap&amp;size=m&amp;text=Bootstrap%20%C2%B7%20The%20world%27s%20most%20popular%20mobile-first%20and%20responsive%20front-end%20framework.&amp;url=http%3A%2F%2Fgetbootstrap.com%2F&amp;via=getbootstrap" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="position: static; visibility: visible; width: 97px; height: 20px;"></iframe>
                         -->
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://khan.github.io/tota11y" data-text="tota11y – an accessibility visualization toolkit by @KhanAcademy">Tweet</a>
-                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+						<a href="https://twitter.com/share" class="twitter-share-button"
+							data-url="http://khan.github.io/tota11y"
+							data-text="tota11y – an accessibility visualization toolkit by @KhanAcademy">Tweet</a>
+						<script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<p>I really love bananas. Next, an empty paragraph! <a href="#"></a></p>
+<p></p>
+<figure><figcaption></figcaption></figure>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h3 title="useless title">Invalid Subheading</h3>
+				<p style="font-size: 25.2px;color: #E03A8E;"><b>Do I have correct contrast?</b></p>
+				<p>Button describedby two different IDs: </p>
+				<p><a class="btn btn-default" href="#" role="button" aria-describedby="lbl1 lbl2">View details
+						&raquo;</a></p>
+				<p id="lbl1">Label 1</p>
+				<p id="lbl2">Label 2</p>
+			</div>
+		</div>
+		<nav></nav>
+		<!-- Example row of columns -->
+		<div class="row">
+			<div class="col-md-4">
+				<h2>Heading</h2>
+				<h3></h3>
+				<p>Button with text over-ridden by aria-label: </p>
+				<p><a class="btn btn-default" href="#" role="button" aria-label="override">View details &raquo;</a></p>
+			</div>
+			<div class="col-md-4">
+				<h2>Heading</h2>
+				<p>Button with aria-label and one aria-describedby</p>
+				<p><a class="btn btn-default" href="#" role="button" aria-label="override" aria-describedby="lbl1">View
+						details &raquo;</a></p>
+			</div>
+			<div class="col-md-4">
+				<h4>Invalid Subheading</h4>
+				<p>Button with aria-label and two aria-describedby paras</p>
+				<p><a class="btn btn-default" href="#" role="button" aria-label="override"
+						aria-describedby="lbl1 lbl2">View details &raquo;</a></p>
+			</div>
+		</div>
+		<ol></ol>
+		<div class="row">
+			<div class="col-md-4">
+				<h2>Heading</h2>
+				<p>Button with one aria-labelledby</p>
+				<p><a class="btn btn-default" href="#" role="button" aria-labelledby="lbl1">View details &raquo;</a></p>
+			</div>
+			<div class="col-md-4">
+				<h2>Heading</h2>
+				<p>Button with two aria-labelledby attribs</p>
+				<p><a class="btn btn-default" href="#" role="button" aria-labelledby="lbl1 lbl2">View details
+						&raquo;</a></p>
+			</div>
+			<div class="col-md-4">
+				<h2>Subheading</h2>
+				<li></li>
+				<p id="lbl3">Label 3</p>
+				<p id="lbl4">Label 4</p>
+				<p>Button with 2 aria-labelledby attribs and 2 aria-describedby attribs</p>
+				<p><a class="btn btn-default" href="#" role="button" aria-labelledby="lbl1 lbl2"
+						aria-describedby="lbl3 lbl4">View details &raquo;</a></p>
+			</div>
+		</div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Invalid Subheading</h3>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-        </div>
-        <!-- Example row of columns -->
-        <div class="row">
-            <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
-                <h4>Invalid Subheading</h4>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
-                <h2>Subheading</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-        </div>
+		<div class="row">
+			<h1>Invalid h1</h1>
+		</div>
+		<ul></ul>
+		<div class="row">
+			<div class="col-md-4">
+				<h2 class="visually-hidden">Visually hidden Heading</h2>
+				<p>VISUALLY HIDDEN HEADING ABOVE</p>
+				<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+			</div>
+			<div class="col-md-4">
+				<h2>Heading</h2>
+				<p>Donec id <span style="color:bisque">non mi porta gravida at eget metus</span>. Fusce dapibus, tellus ac cursus commodo, tortor
+					mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
+					mollis euismod. Donec sed odio dui. </p>
+				<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+			</div>
+			<div class="col-md-4">
+				<h4>Invalid Subheading</h4>
+				<br><br>
+				<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
+					porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+					ut fermentum massa justo sit amet risus.</p>
+				<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+			</div>
+		</div>
 
-        <div class="row">
-            <h1>Invalid h1</h1>
-        </div>
+		<hr>
 
-        <div class="row">
-            <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
-                <h4>Invalid Subheading</h4>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-        </div>
+		<footer>
+			<p>&copy; Company 2014</p>
+		</footer>
+	</div> <!-- /container -->
 
-        <hr>
-
-        <footer>
-            <p>&copy; Company 2014</p>
-        </footer>
-    </div> <!-- /container -->
-
-    <script src="/webpack-dev-server.js"></script>
-    <script src="/tota11y.js"></script>
+	<script src="/webpack-dev-server.js"></script>
+	<script src="/tota11y.js"></script>
 </body>

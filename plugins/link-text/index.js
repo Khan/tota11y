@@ -14,8 +14,7 @@ class LinkTextPlugin extends Plugin {
 
     getDescription() {
         return `
-            Identifies links that may be confusing when read by a screen
-            reader
+            Identifies links that may be confusing because they lack context
         `;
     }
 
@@ -90,12 +89,11 @@ class LinkTextPlugin extends Plugin {
                         {" "}
                         <i>"{extractedText}"</i>
                         {" "}
-                        is unclear without context and may be confusing to
-                        screen readers. Consider rearranging the
+                        is unclear without context and may be confusing. See <a target="_blank" rel="noopener noreferrer" href="https://dna.babylonhealth.com/ui-guidelines/components/text-link">DNA guidance on link text</a>. Consider rearranging the
                         {" "}
                         <code>{"&lt;a&gt;&lt;/a&gt;"}</code>
                         {" "}
-                        tags or including special screen reader text.
+                        tags or using <code>aria-label</code>.
                     </div>
                 );
 

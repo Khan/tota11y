@@ -10,8 +10,11 @@
     .position(fixed, auto, auto, 0, @viewportEdgePadding);
 
     border-top-left-radius: @borderRadius;
-    border-top-right-radius: @borderRadius;
-    overflow: hidden;
+	border-top-right-radius: @borderRadius;
+	/* make it scrollable vertically at 200% zoom */
+	overflow: scroll;
+	max-height:95%;
+	/* end hack */
     z-index: @z-index--UI;
 
     &-toggle {
@@ -50,3 +53,5 @@
     position: absolute;
     width: 1px;
 }
+
+.tota11y-label:hover {outline:1px red solid; z-index:9999;}
